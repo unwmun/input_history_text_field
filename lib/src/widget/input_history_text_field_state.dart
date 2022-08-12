@@ -18,8 +18,10 @@ class InputHistoryTextFieldState extends State<InputHistoryTextField> {
   void _initWidgetState() {
     if (!widget.enableHistory) return;
     widget.focusNode ??= FocusNode();
-    widget.textEditingController ??= TextEditingController(text: _lastSubmitValue);
-    if (widget.enableFilterHistory) widget.textEditingController?.addListener(_onTextChange);
+    widget.textEditingController ??=
+        TextEditingController(text: _lastSubmitValue);
+    if (widget.enableFilterHistory)
+      widget.textEditingController?.addListener(_onTextChange);
     widget.focusNode?.addListener(_onFocusChange);
   }
 
@@ -40,8 +42,12 @@ class InputHistoryTextFieldState extends State<InputHistoryTextField> {
   void _onFocusChange() {
     if (this.widget.hasFocusExpand) this._toggleOverlayHistoryList();
     //trigger filterHistory on focus
-    if (widget.focusNode!.hasFocus) this._inputHistoryController.filterHistory(widget.textEditingController!.text);
-    if (widget.textEditingController!.text != _lastSubmitValue && !widget.focusNode!.hasFocus) {
+    if (widget.focusNode!.hasFocus)
+      this
+          ._inputHistoryController
+          .filterHistory(widget.textEditingController!.text);
+    if (widget.textEditingController!.text != _lastSubmitValue &&
+        !widget.focusNode!.hasFocus) {
       //trigger _saveHistory on submit
       _saveHistory();
       _lastSubmitValue = widget.textEditingController!.text;
@@ -142,7 +148,7 @@ class InputHistoryTextFieldState extends State<InputHistoryTextField> {
                 if (!snapshot.hasData || snapshot.hasError || !isShow)
                   return SizedBox.shrink();
                 if (widget.listStyle == ListStyle.Badge) {
-                  return Wrap(
+                  return Row(
                     children: [
                       for (var item in snapshot.data!.all)
                         _badgeHistoryItem(item)
