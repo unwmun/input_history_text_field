@@ -147,6 +147,9 @@ class InputHistoryTextField extends StatefulWidget {
   /// lock item font color
   final Color? lockTextColor;
 
+  // 유효성 검사
+  final FormFieldValidator<String>? validator;
+
   InputHistoryTextField(
       {Key? key,
       required this.historyKey,
@@ -220,9 +223,9 @@ class InputHistoryTextField extends StatefulWidget {
       this.onTap,
       this.buildCounter,
       this.scrollController,
-      this.scrollPhysics})
-      : 
-        smartDashesType = smartDashesType ??
+      this.scrollPhysics,
+      this.validator})
+      : smartDashesType = smartDashesType ??
             (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
         smartQuotesType = smartQuotesType ??
             (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
