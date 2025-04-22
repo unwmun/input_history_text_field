@@ -279,7 +279,7 @@ class InputHistoryTextFieldState extends State<InputHistoryTextField> {
         style: widget.listTextStyle ??
             TextStyle(
                 color: this._textColor(item) ??
-                    Theme.of(context).textTheme.bodyText1!.color));
+                    Theme.of(context).textTheme.bodyMedium!.color));
   }
 
   Color? _textColor(InputHistoryItem item) {
